@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
@@ -9,12 +10,19 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#2C3036] text-white border-b border-white/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#2C3036]/90 backdrop-blur-md text-white border-b border-white/10">
       <nav className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="text-xl lg:text-2xl font-semibold tracking-tight">
-            NotariesBy
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/notariesby-logo-white.png"
+              alt="NotariesBy"
+              width={200}
+              height={75}
+              className="h-10 lg:h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -25,20 +33,20 @@ export function Header() {
             <Link href="/services" className="text-sm hover:text-white/70 transition-colors">
               Services
             </Link>
-            <Link href="/contact" className="text-sm hover:text-white/70 transition-colors">
+            <Link href="/schedule" className="text-sm hover:text-white/70 transition-colors">
               Schedule
             </Link>
             <Link href="/about" className="text-sm hover:text-white/70 transition-colors">
               About
             </Link>
-            <Link href="/faq" className="text-sm hover:text-white/70 transition-colors">
+            <Link href="/resources" className="text-sm hover:text-white/70 transition-colors">
               Resources
             </Link>
             <Link href="/contact" className="text-sm hover:text-white/70 transition-colors">
               Contact
             </Link>
-            <Link href="/contact">
-              <Button size="sm" className="bg-[#4C5870] text-white hover:bg-[#4C5870]/90">
+            <Link href="/schedule">
+              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Book Now
               </Button>
             </Link>
@@ -69,7 +77,7 @@ export function Header() {
                 Services
               </Link>
               <Link
-                href="/contact"
+                href="/schedule"
                 className="text-sm hover:text-white/70 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -83,7 +91,7 @@ export function Header() {
                 About
               </Link>
               <Link
-                href="/faq"
+                href="/resources"
                 className="text-sm hover:text-white/70 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -96,8 +104,8 @@ export function Header() {
               >
                 Contact
               </Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button size="sm" className="w-full bg-[#4C5870] text-white hover:bg-[#4C5870]/90">
+              <Link href="/schedule" onClick={() => setMobileMenuOpen(false)}>
+                <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                   Book Now
                 </Button>
               </Link>

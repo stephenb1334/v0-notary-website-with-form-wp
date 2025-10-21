@@ -1,64 +1,93 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { PageHero } from "@/components/page-hero"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, Home, Globe, Briefcase, Car, Users, FileCheck, Building, ArrowRight } from "lucide-react"
+import { Check } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ServicesPage() {
   const services = [
     {
-      icon: FileText,
-      title: "General Notarization",
-      description: "Standard document notarization for affidavits, contracts, powers of attorney, and more.",
+      title: "Document Services",
+      description: "Professional notarization and document authentication",
+      price: null,
       features: [
-        "Affidavits and sworn statements",
-        "Powers of attorney",
-        "Contracts and agreements",
-        "Certified copies",
+        "General document notarization",
+        "Mobile notary services covering all 67 Florida counties",
+        "Witnesses for document signing",
+        "Extended hours notary services (with convenience fee)",
+        "LegalZoom document notarization",
+        "Apostille document authentication for international use",
       ],
     },
     {
-      icon: Home,
       title: "Real Estate Services",
-      description: "Comprehensive notary services for all your real estate transactions and closings.",
-      features: ["Loan signing services", "Refinancing documents", "Property deeds and titles", "Mortgage documents"],
+      description: "Expert notarization for real estate transactions",
+      price: null,
+      features: [
+        "Real estate document notarization and preparation",
+        "Seller documents",
+        "New home purchase documents",
+        "Loan signing agent services (NNA and LSS Certified)",
+      ],
     },
     {
-      icon: Globe,
+      title: "Estate Planning",
+      description: "Secure your legacy with proper documentation",
+      price: null,
+      features: [
+        "Last Will and Testament",
+        "Living Will/Advance Healthcare Directive",
+        "Durable Power of Attorney",
+        "Full estate planning packages",
+        "Testamentos, Directivas, Carta de Poder (Spanish services)",
+      ],
+    },
+    {
       title: "Apostille Services",
-      description: "International document authentication for use in countries that are part of the Hague Convention.",
-      features: ["Birth certificates", "Marriage certificates", "Educational documents", "Corporate documents"],
+      description: "International document authentication",
+      price: "$250 per document",
+      features: [
+        "Birth certificates",
+        "Death certificates",
+        "Marriage certificates",
+        "Divorce certificates",
+        "State background checks",
+        "Document translations",
+      ],
+      showImage: true,
     },
     {
-      icon: Briefcase,
-      title: "Business Documents",
-      description: "Professional notarization for corporate and business-related documents.",
-      features: ["Corporate resolutions", "Business contracts", "Partnership agreements", "Commercial leases"],
-    },
-    {
-      icon: Car,
-      title: "Vehicle Documents",
-      description: "Notarization services for vehicle-related paperwork and title transfers.",
+      title: "Vehicle Documentation",
+      description: "Notarization for vehicle-related paperwork",
+      price: null,
       features: ["Vehicle title transfers", "Bill of sale", "Power of attorney for vehicles", "Odometer disclosures"],
     },
     {
-      icon: Users,
-      title: "Mobile Notary",
-      description: "We come to you! Convenient mobile notary services at your location.",
-      features: ["Home visits", "Office appointments", "Hospital and care facilities", "After-hours availability"],
+      title: "Business Services",
+      description: "Corporate and business document notarization",
+      price: null,
+      features: ["Corporate resolutions", "Business contracts", "Partnership agreements", "Commercial leases"],
     },
     {
-      icon: FileCheck,
-      title: "Estate Planning",
-      description: "Notarization for wills, trusts, and other estate planning documents.",
-      features: ["Last will and testament", "Living trusts", "Healthcare directives", "Beneficiary designations"],
+      title: "Wedding Officiant",
+      description: "Personalized wedding ceremonies",
+      price: null,
+      features: [
+        "Traditional wedding ceremonies",
+        "Intimate elopements",
+        "Non-denominational ceremonies",
+        "Personalized vow writing assistance",
+        "Marriage license guidance",
+      ],
     },
     {
-      icon: Building,
-      title: "Legal Documents",
-      description: "Notarization for various legal documents and court-related paperwork.",
-      features: ["Court documents", "Depositions", "Legal affidavits", "Witness statements"],
+      title: "I-9 Verification",
+      description: "Employment eligibility verification",
+      price: null,
+      features: ["I-9 form completion assistance", "Document verification", "Employer compliance support"],
     },
   ]
 
@@ -66,23 +95,12 @@ export default function ServicesPage() {
     <div className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative h-[400px] flex items-center justify-center bg-muted mt-16 lg:mt-20">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(/placeholder.svg?height=400&width=1920&query=professional+notary+services+documents+and+seal)",
-            filter: "brightness(0.4)",
-          }}
-        />
-        <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-4 text-balance">Our Services</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Comprehensive notary services tailored to meet all your document authentication needs
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Our Services"
+        subtitle="Comprehensive notary and document services tailored to meet all your authentication needs"
+        backgroundImage="/images/banners/banner10-1600x500.jpg"
+        height="md"
+      />
 
       {/* Services Grid */}
       <section className="py-16 lg:py-24">
@@ -95,30 +113,39 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {services.map((service, index) => {
-              const Icon = service.icon
-              return (
-                <Card key={index} className="border-border hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-accent" />
+            {services.map((service, index) => (
+              <Card key={index} className="border-border hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  {service.price && <p className="text-2xl font-bold text-accent">{service.price}</p>}
+                  <CardDescription className="leading-relaxed">{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {service.showImage && (
+                    <div className="mb-6 flex justify-center">
+                      <Image
+                        src="/images/florida-apostille.png"
+                        alt="Florida Apostille - International Document Authentication"
+                        width={200}
+                        height={300}
+                        className="object-contain"
+                      />
                     </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
-                    <CardDescription className="leading-relaxed">{service.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm">
-                          <ArrowRight className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              )
-            })}
+                  )}
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm">
+                        <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/schedule">
+                    <Button className="w-full">Book {service.title}</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -176,18 +203,18 @@ export default function ServicesPage() {
               Contact us today to schedule your appointment. We're ready to help with all your notarization needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
+              <Link href="/schedule">
                 <Button size="lg" className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto">
                   Schedule Appointment
                 </Button>
               </Link>
-              <Link href="/faq">
+              <Link href="/resources">
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white/10 w-full sm:w-auto bg-transparent"
                 >
-                  View FAQ
+                  View Resources
                 </Button>
               </Link>
             </div>

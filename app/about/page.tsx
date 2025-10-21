@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Award, Clock, Heart, Shield, Target } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function AboutPage() {
   const values = [
@@ -36,22 +37,44 @@ export default function AboutPage() {
     { number: "24/7", label: "Emergency Service" },
   ]
 
+  const teamMembers = [
+    {
+      name: "Jill Munoz",
+      title: "Founder & Lead Notary",
+      bio: "With over 15 years of experience in the notary industry, Jill founded NotariesBy to provide exceptional mobile notary services throughout Florida. She specializes in real estate transactions and estate planning documents, bringing professionalism and reliability to every appointment.",
+      image: "/images/team/jill33.png",
+    },
+    {
+      name: "Natalie Kolaxis",
+      title: "Senior Notary Public",
+      bio: "Natalie brings 8 years of notary experience with expertise in loan signings and complex document preparation. Her attention to detail and commitment to client satisfaction makes her an invaluable member of our team, serving clients across the Tampa Bay area.",
+      image: "/images/team/natalie.png",
+    },
+    {
+      name: "Larry Rivera",
+      title: "Estate Planning Advisor & Veteran Advocate",
+      bio: "Retired Army Captain Larry Rivera brings military precision and dedication to estate planning services. As a bilingual translator and veteran advocate, he specializes in helping families secure their legacy through comprehensive estate planning documents and personalized guidance.",
+      image: null, // Placeholder for Larry
+    },
+  ]
+
   return (
     <div className="min-h-screen">
       <Header />
 
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center bg-muted mt-16 lg:mt-20">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(/placeholder.svg?height=400&width=1920&query=professional+notary+office+interior+modern)",
-            filter: "brightness(0.4)",
-          }}
-        />
+        <div className="absolute inset-0">
+          <Image
+            src="/images/banners/banner41600x500.jpg"
+            alt="Professional notary office"
+            fill
+            className="object-cover"
+            style={{ filter: "brightness(0.4)" }}
+          />
+        </div>
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-4 text-balance">About NotaryPro</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-4 text-balance">About NotariesBy</h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
             Your trusted partner for professional notary services since 2009
           </p>
@@ -132,8 +155,46 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Certifications */}
+      {/* Our Notary Professionals */}
       <section className="py-16 lg:py-24 bg-muted">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-light mb-4">Our Notary Professionals</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Our experienced professionals are dedicated to providing you with exceptional notary services and
+              personalized attention.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-background p-8 rounded-lg border border-border text-center">
+                <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-muted border-4 border-accent/20">
+                  {member.image ? (
+                    <Image
+                      src={member.image || "/placeholder.svg"}
+                      alt={member.name}
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-muted">
+                      <span className="text-muted-foreground text-sm">Coming Soon</span>
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                <p className="text-accent font-medium mb-4 text-sm">{member.title}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications */}
+      <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">

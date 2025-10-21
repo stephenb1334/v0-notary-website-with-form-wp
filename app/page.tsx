@@ -1,10 +1,10 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Check, MapPin, Heart, FileText, Globe, Clock, Star, Shield, Award, Users } from "lucide-react"
+import { Check, MapPin, Heart, FileText, Globe, Clock, Star, Shield } from "lucide-react"
 import Link from "next/link"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ImageCarousel } from "@/components/image-carousel"
+import Image from "next/image"
 
 export default function HomePage() {
   const testimonials = [
@@ -36,32 +36,58 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center bg-primary mt-16 lg:mt-20">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url(/images/hero-notariesby.jpg)",
-            filter: "brightness(0.5)",
-          }}
-        />
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-notariesby-signature.png"
+            alt="Professional notary services"
+            fill
+            className="object-cover"
+            style={{ filter: "brightness(0.7) blur(2px)" }}
+            priority
+          />
+          <div className="absolute inset-0 bg-[#A9A9A9]/30" />
+        </div>
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-6 text-balance leading-tight">
-            Professional Mobile Notary Services in Florida
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-6 text-balance leading-tight text-black">
+            Reliable Mobile Notary Services—On Time, On Your Terms
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Specializing in loan document signings and estate planning. We bring the notary service to you, making the
-            process seamless and convenient.
+          <p className="text-lg md:text-xl text-black/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Certified, insured, and ready to help with real estate closings, affidavits, and general notarizations
+            across the West Coast.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm">
+            <div className="flex items-center gap-2 bg-[#4C5870]/60 backdrop-blur-sm px-4 py-2 rounded-full text-white">
+              <Check className="w-4 h-4" />
+              <span>NNA Certified</span>
+            </div>
+            <div className="flex items-center gap-2 bg-[#4C5870]/60 backdrop-blur-sm px-4 py-2 rounded-full text-white">
+              <Shield className="w-4 h-4" />
+              <span>Bonded & Insured</span>
+            </div>
+            <div className="flex items-center gap-2 bg-[#4C5870]/60 backdrop-blur-sm px-4 py-2 rounded-full text-white">
+              <Clock className="w-4 h-4" />
+              <span>Same-Day Appointments</span>
+            </div>
+            <div className="flex items-center gap-2 bg-[#4C5870]/60 backdrop-blur-sm px-4 py-2 rounded-full text-white">
+              <Clock className="w-4 h-4" />
+              <span>Evenings & Weekends</span>
+            </div>
+            <div className="flex items-center gap-2 bg-[#4C5870]/60 backdrop-blur-sm px-4 py-2 rounded-full text-white">
+              <MapPin className="w-4 h-4" />
+              <span>Mobile Service</span>
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/services">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto">
+              <Button size="lg" className="bg-[#2C3036] text-white hover:bg-[#1F2238] w-full sm:w-auto">
                 Learn More
               </Button>
             </Link>
-            <Link href="/contact">
+            <Link href="/schedule">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white/10 w-full sm:w-auto bg-transparent"
+                className="border-[#2C3036] text-[#2C3036] hover:bg-[#2C3036]/10 w-full sm:w-auto bg-transparent"
               >
                 Book Now
               </Button>
@@ -71,41 +97,6 @@ export default function HomePage() {
       </section>
 
       <ImageCarousel />
-
-      <section className="py-0">
-        <div className="container mx-auto px-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
-            <div className="relative h-48 md:h-64">
-              <img
-                src="/placeholder.svg?height=300&width=400"
-                alt="Notary Commission"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="relative h-48 md:h-64">
-              <img
-                src="/placeholder.svg?height=300&width=400"
-                alt="NNA Certification"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="relative h-48 md:h-64">
-              <img
-                src="/placeholder.svg?height=300&width=400&O+insurance+gavel="
-                alt="E&O Insurance"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="relative h-48 md:h-64">
-              <img
-                src="/placeholder.svg?height=300&width=400"
-                alt="Professional Notary Services"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 lg:px-8">
@@ -477,10 +468,10 @@ export default function HomePage() {
               <div key={index} className="bg-background p-8 rounded-lg border border-border">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-muted-foreground italic mb-4 leading-relaxed">"{testimonial.text}"</p>
+                <p className="text-muted-foreground italic mb-4 leading-relaxed text-lg">{testimonial.text}</p>
                 <p className="font-semibold">— {testimonial.name}</p>
               </div>
             ))}
@@ -515,69 +506,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-light mb-4">
-              Our Certifications and Professional Affiliations
-            </h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              We maintain the highest standards of professionalism and expertise in the notary industry.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Award className="w-12 h-12 text-accent" />
-              </div>
-              <h3 className="font-semibold mb-2">Certified Notary Signing Agent</h3>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Shield className="w-12 h-12 text-accent" />
-              </div>
-              <h3 className="font-semibold mb-2">National Notary Association Member</h3>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Check className="w-12 h-12 text-accent" />
-              </div>
-              <h3 className="font-semibold mb-2">Background Screened</h3>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Star className="w-12 h-12 text-accent" />
-              </div>
-              <h3 className="font-semibold mb-2">5-Star Rated</h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Our Founder */}
-      <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
+      <section className="py-16 lg:py-24 bg-slate-800 text-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div>
               <h2 className="text-3xl lg:text-4xl font-serif font-light mb-6">Our Founder</h2>
-              <p className="text-primary-foreground/90 mb-6 leading-relaxed text-lg">
+              <p className="text-white/90 mb-6 leading-relaxed text-lg">
                 Jill Munoz brings over 20 years of experience in notary services and real estate to West Coast Notaries.
                 Her dedication to professionalism and client satisfaction has made her one of the most trusted notaries
                 in Florida.
               </p>
               <div className="flex items-center gap-1 mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <p className="text-primary-foreground/80">5.0 from 4 Google Reviews</p>
+              <p className="text-white/80 text-sm">5.0 from 4 Google Reviews</p>
             </div>
-            <div className="flex justify-center">
-              <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-primary-foreground/20">
-                <img
-                  src="/placeholder.svg?height=400&width=400"
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-72 h-72 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                <Image
+                  src="/images/team/jill33.png"
                   alt="Jill Munoz, Founder"
+                  width={288}
+                  height={288}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -586,6 +539,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Our Professional Credentials */}
       <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
@@ -637,178 +591,6 @@ export default function HomePage() {
                 Fully insured with Errors & Omissions coverage for your protection and peace of mind.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-light mb-4">FAQs</h2>
-            <p className="text-muted-foreground">Answers to commonly asked questions about our notary services.</p>
-          </div>
-
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>What is a notary public?</AccordionTrigger>
-              <AccordionContent>
-                A notary public is an official appointed by the state government to serve as an impartial witness in the
-                signing of important documents. Notaries verify the identity of signers, ensure they are signing
-                willingly, and help prevent fraud.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-2">
-              <AccordionTrigger>What ID do I need for notarization?</AccordionTrigger>
-              <AccordionContent>
-                You need a current, government-issued photo ID such as a driver's license, state ID, passport, or
-                military ID. The ID must not be expired and should clearly show your photo, signature, and physical
-                description.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3">
-              <AccordionTrigger>How much do your services cost?</AccordionTrigger>
-              <AccordionContent>
-                Our pricing varies based on the type of service and location. Standard notarizations start at the
-                state-mandated fee, with additional charges for mobile services. Apostille services are $250 per
-                document. Contact us for a detailed quote based on your specific needs.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-4">
-              <AccordionTrigger>How quickly can you schedule an appointment?</AccordionTrigger>
-              <AccordionContent>
-                We offer flexible scheduling and can often accommodate same-day appointments. For urgent requests, we
-                provide expedited services. Contact us at (727) 710-5455 to discuss your timeline and availability.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </section>
-
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-light mb-4">Get in Touch</h2>
-            <p className="text-muted-foreground">
-              Have questions or need to schedule an appointment? Contact us today.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Phone</h4>
-                      <p className="text-lg font-medium">(727) 710-5455</p>
-                      <p className="text-sm text-muted-foreground">Available 9AM-7PM, Monday-Saturday</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <FileText className="w-6 h-6 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Email</h4>
-                      <p className="text-lg font-medium">info@notariesby.com</p>
-                      <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Service Area</h4>
-                      <p className="text-lg font-medium">Tampa Bay, FL and surrounding areas</p>
-                      <p className="text-sm text-muted-foreground">Mobile service - we come to you!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-muted p-8 rounded-lg">
-              <Link href="/contact">
-                <Button size="lg" className="w-full">
-                  Go to Contact Form
-                </Button>
-              </Link>
-              <p className="text-center text-sm text-muted-foreground mt-4">
-                Click above to access our full contact form with service selection
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Certified & Trusted Professional */}
-      <section className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-light mb-4">Certified & Trusted Professional</h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              Our certifications and memberships ensure you receive the highest quality notary services.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center items-center gap-12 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Award className="w-12 h-12 text-accent" />
-              </div>
-              <p className="text-sm font-medium">NNA Certified</p>
-            </div>
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Shield className="w-12 h-12 text-accent" />
-              </div>
-              <p className="text-sm font-medium">E&O Insured</p>
-            </div>
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Check className="w-12 h-12 text-accent" />
-              </div>
-              <p className="text-sm font-medium">Background Checked</p>
-            </div>
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-background border-2 border-accent flex items-center justify-center">
-                <Star className="w-12 h-12 text-accent" />
-              </div>
-              <p className="text-sm font-medium">5-Star Service</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Ready to Schedule CTA */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-serif font-light mb-6">Ready to Schedule a Notary Service?</h2>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Book an appointment today and experience our professional, convenient mobile notary services.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="w-full sm:w-auto">
-                Book an Appointment
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
-                Contact Us
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
