@@ -1,0 +1,127 @@
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { ContactForm } from "@/components/contact-form"
+import { Mail, Phone, MapPin, Clock } from "lucide-react"
+
+export default function ContactPage() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative h-[300px] flex items-center justify-center bg-muted mt-16 lg:mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url(/placeholder.svg?height=300&width=1920&query=contact+us+professional+office)",
+            filter: "brightness(0.4)",
+          }}
+        />
+        <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-4 text-balance">Contact Us</h1>
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+            Get in touch to schedule your notary appointment
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-serif font-light mb-6">Get In Touch</h2>
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                Have questions or ready to schedule an appointment? We're here to help. Fill out the form or reach out
+                directly using the contact information below.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Phone</h3>
+                    <p className="text-muted-foreground text-sm">(555) 123-4567</p>
+                    <p className="text-muted-foreground text-sm">Mon-Fri: 9am - 6pm</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Email</h3>
+                    <p className="text-muted-foreground text-sm">info@notarypro.com</p>
+                    <p className="text-muted-foreground text-sm">We respond within 24 hours</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Office Location</h3>
+                    <p className="text-muted-foreground text-sm">
+                      123 Main Street, Suite 100
+                      <br />
+                      Your City, ST 12345
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Business Hours</h3>
+                    <div className="text-muted-foreground text-sm space-y-1">
+                      <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                      <p>Saturday: 10:00 AM - 4:00 PM</p>
+                      <p>Sunday: By Appointment Only</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map Placeholder */}
+              <div className="mt-8 h-[300px] bg-muted border border-border">
+                <img
+                  src="/placeholder.svg?height=300&width=600"
+                  alt="Office location map"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <div className="bg-card border border-border p-6 lg:p-8">
+                <h3 className="text-2xl font-semibold mb-6">Send Us a Message</h3>
+                <ContactForm />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Emergency Service Banner */}
+      <section className="py-12 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h3 className="text-2xl font-semibold mb-2">Need Emergency Notary Service?</h3>
+          <p className="text-primary-foreground/90 mb-4">
+            We offer 24/7 emergency mobile notary services for urgent situations.
+          </p>
+          <p className="text-xl font-semibold">Call: (555) 123-4567</p>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  )
+}
