@@ -34,7 +34,7 @@ export default function ProfessionalCredentials() {
   return (
     <section aria-labelledby="professional-credentials-heading" className="relative py-12 md:py-16">
       <div className="absolute inset-0 -z-10">
-        <div className="h-full w-full bg-gradient-to-br from-[#4c5870]/20 via-[#1f2238]/30 to-[#2c3036]/20" />
+        <div className="h-full w-full bg-gradient-to-br from-[#4c5870]/10 via-[#1f2238]/20 to-[#2c3036]/10" />
       </div>
 
       <div ref={ref} className="container mx-auto px-4 lg:px-8">
@@ -42,7 +42,7 @@ export default function ProfessionalCredentials() {
           <h2 id="professional-credentials-heading" className="text-2xl md:text-3xl font-semibold text-foreground">
             Our Professional Credentials
           </h2>
-          <p className="mt-2 text-foreground-secondary">Licensed, certified, and insured for your peace of mind.</p>
+          <p className="mt-2 text-gray-700">Licensed, certified, and insured for your peace of mind.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -85,7 +85,7 @@ function CredentialCard({
     <article className="group rounded-lg bg-card border border-border shadow-md overflow-hidden">
       <div className="relative aspect-square">
         <Image
-          src={src}
+          src={src || "/placeholder.svg"}
           alt={alt}
           fill
           className="object-cover"

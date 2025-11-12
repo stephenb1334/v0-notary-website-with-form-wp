@@ -17,33 +17,33 @@ export function ImageCarousel() {
   ]
 
   return (
-    <div className="relative overflow-hidden bg-background py-3 md:py-6 lg:py-8">
-      <div className="carousel-track flex gap-4 md:gap-6">
+    <div className="relative overflow-hidden bg-gray-900/20 py-8 md:py-10 lg:py-12">
+      <div className="carousel-track flex gap-3 md:gap-4">
         {images.map((image, index) => (
           <div
             key={`first-${index}`}
-            className="carousel-item flex-shrink-0 w-48 h-32 md:w-56 md:h-40 lg:w-64 lg:h-48 rounded-lg overflow-hidden relative"
+            className="carousel-item flex-shrink-0 w-36 h-24 md:w-50 md:h-33 lg:w-64 lg:h-48 rounded-lg overflow-hidden relative"
           >
             <Image
               src={image.src || "/placeholder.svg"}
               alt={image.alt}
               fill
               className="object-cover transition-all duration-500"
-              sizes="(max-width: 768px) 192px, (max-width: 1024px) 224px, 256px"
+              sizes="(max-width: 768px) 144px, (max-width: 1024px) 200px, 256px"
             />
           </div>
         ))}
         {images.map((image, index) => (
           <div
             key={`second-${index}`}
-            className="carousel-item flex-shrink-0 w-48 h-32 md:w-56 md:h-40 lg:w-64 lg:h-48 rounded-lg overflow-hidden relative"
+            className="carousel-item flex-shrink-0 w-36 h-24 md:w-50 md:h-33 lg:w-64 lg:h-48 rounded-lg overflow-hidden relative"
           >
             <Image
               src={image.src || "/placeholder.svg"}
               alt={image.alt}
               fill
               className="object-cover transition-all duration-500"
-              sizes="(max-width: 768px) 192px, (max-width: 1024px) 224px, 256px"
+              sizes="(max-width: 768px) 144px, (max-width: 1024px) 200px, 256px"
             />
           </div>
         ))}
@@ -57,6 +57,7 @@ export function ImageCarousel() {
         .carousel-track {
           animation: scroll 80s linear infinite;
           width: fit-content;
+          will-change: transform;
         }
         .carousel-track:hover {
           animation-play-state: paused;

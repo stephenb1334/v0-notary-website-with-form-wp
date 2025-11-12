@@ -28,6 +28,13 @@ export default function HomePage() {
       date: "4 months ago",
     },
     {
+      name: "Melissa Golden",
+      text: "Jill officiated our wedding and did an incredible job. She helped draft the vows, was professional and led a beautiful service. She filed the paperwork quickly and worked without us directing her, and provided what we needed while we were busy on our honeymoon out of the country. I couldn't recommend her more!",
+      rating: 5,
+      profile: "2 reviews",
+      date: "4 months ago",
+    },
+    {
       name: "Denise Dililo",
       text: "West Coast Notaries LLC. Great company! Jill handled all my Notary paper work in a professional and pleasant manner. She helped us navigate this signing process with patience and much knowledge. I definitely will call this company for all my Notary needs.",
       rating: 5,
@@ -571,25 +578,25 @@ export default function HomePage() {
             </h2>
             <div className="flex items-center justify-center gap-1 mb-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-[#4C5870] text-[#4C5870]" />
+                <Star key={i} className="w-6 h-6 fill-[#FBBF24] text-[#FBBF24]" />
               ))}
             </div>
-            <p className="text-gray-700">5.0 from 7 Google Reviews</p>
+            <p className="text-gray-700">5.0 from 8 Google Reviews</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full"
               >
                 <div className="flex items-center gap-1 mb-3">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#4C5870] text-[#4C5870]" />
+                    <Star key={i} className="w-4 h-4 fill-[#FBBF24] text-[#FBBF24]" />
                   ))}
                 </div>
-                <p className="text-gray-800 mb-4 leading-relaxed">{testimonial.text}</p>
-                <div className="border-t border-gray-100 pt-3">
+                <p className="text-gray-800 mb-4 leading-relaxed flex-grow">{testimonial.text}</p>
+                <div className="border-t border-gray-100 pt-3 mt-auto">
                   <p className="font-semibold text-gray-900">{testimonial.name}</p>
                   <p className="text-sm text-gray-600">{testimonial.profile}</p>
                   <p className="text-xs text-gray-500 mt-1">{testimonial.date}</p>
@@ -657,10 +664,10 @@ export default function HomePage() {
               </p>
               <div className="flex items-center gap-1 mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#4C5870] text-[#4C5870]" />
+                  <Star key={i} className="w-5 h-5 fill-[#FBBF24] text-[#FBBF24]" />
                 ))}
               </div>
-              <p className="text-[#A9A9A9] text-sm">5.0 from 7 Google Reviews</p>
+              <p className="text-[#A9A9A9] text-sm">5.0 from 8 Google Reviews</p>
             </div>
             <div className="flex justify-center lg:justify-end">
               <div className="w-72 h-72 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">

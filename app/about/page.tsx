@@ -119,26 +119,15 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="relative h-[400px] lg:h-[500px]">
-              <img src="/placeholder.svg?height=500&width=600" alt="Our team" className="w-full h-full object-cover" />
+            <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/about/signing-off-1200x1200.jpg"
+                alt="Professional document signing with pen"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Duplicate Mission Statement Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-12 shadow-md">
-            <h2 className="text-2xl lg:text-3xl font-serif font-light mb-6 text-gray-900 text-center">Our Mission</h2>
-            <p className="text-base lg:text-lg text-gray-800 leading-relaxed text-center">
-              At Notaries By, our mission is to provide dependable, precise, and compassionate notary and closing
-              services that make every signature matter. As a proud woman-owned business and advocate for our nation's
-              veterans, we partner with real-estate professionals, legal and financial teams, and everyday clients to
-              ensure each transaction is handled with integrity, efficiency, and respect. From real-estate closings to
-              estate planning, business contracts, and personal documents, we create seamless experiences that build
-              trust, foster lasting relationships, and strengthen our community.
-            </p>
           </div>
         </div>
       </section>
