@@ -1,30 +1,38 @@
 "use client"
 
 import type React from "react"
-
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { CheckCircle, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 
 export function ContactForm() {
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
   const [selectedService, setSelectedService] = useState("")
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    formData.set("service", selectedService)
+
+    console.log("[v0] Form data being submitted:")
+    formData.forEach((value, key) => {
+      console.log(`[v0] ${key}: ${value}`)
+    })
+
     try {
-      // Replace 'YOUR_FORM_ID' with your actual Formspree form ID
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch("https://formspree.io/f/xrbrgjla", {
         method: "POST",
         body: formData,
         headers: {
@@ -32,35 +40,29 @@ export function ContactForm() {
         },
       })
 
+      console.log("[v0] Response status:", response.status)
+      const responseData = await response.json()
+      console.log("[v0] Response data:", responseData)
+
       if (response.ok) {
-        setIsSubmitted(true)
-        form.reset()
-        setSelectedService("")
+        router.push("/thanks")
+      } else {
+        setError(responseData.error || "Failed to send message. Please try again.")
       }
-    } catch (error) {
-      console.error("Form submission error:", error)
+    } catch (err) {
+      console.error("[v0] Form submission error:", err)
+      setError("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  if (isSubmitted) {
-    return (
-      <div className="bg-card border border-border p-8 text-center">
-        <CheckCircle className="w-16 h-16 text-accent mx-auto mb-4" />
-        <h3 className="text-2xl font-semibold mb-2">Thank You!</h3>
-        <p className="text-muted-foreground mb-6">
-          We've received your message and will get back to you within 24 hours.
-        </p>
-        <Button onClick={() => setIsSubmitted(false)} variant="outline">
-          Send Another Message
-        </Button>
-      </div>
-    )
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">{error}</div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="firstName">First Name *</Label>
@@ -85,7 +87,7 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <Label htmlFor="service">Service Needed *</Label>
-        <Select name="service" value={selectedService} onValueChange={setSelectedService} required>
+        <Select value={selectedService} onValueChange={setSelectedService} required>
           <SelectTrigger id="service">
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
@@ -101,6 +103,7 @@ export function ContactForm() {
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
+        <input type="hidden" name="service" value={selectedService} />
       </div>
 
       <div className="space-y-2">

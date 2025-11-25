@@ -384,7 +384,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Professional Apostille Services</h3>
-                  <p className="text-2xl font-bold text-[#4C5870] mb-4">$250 per Apostille document</p>
                   <p className="text-gray-800 leading-relaxed">
                     NotariesBy provides streamlined Apostille services across Tampa Bay, working directly with the US
                     Department of State and appropriate governmental agencies to facilitate the authentication of
