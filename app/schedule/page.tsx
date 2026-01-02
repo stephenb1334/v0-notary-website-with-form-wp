@@ -55,11 +55,6 @@ function BookingForm() {
     formData.set("service", selectedService)
     formData.set("preferred_time", selectedTime)
 
-    console.log("[v0] Schedule form data being submitted:")
-    formData.forEach((value, key) => {
-      console.log(`[v0] ${key}: ${value}`)
-    })
-
     try {
       const response = await fetch("https://formspree.io/f/xrbrgjla", {
         method: "POST",
@@ -69,17 +64,13 @@ function BookingForm() {
         },
       })
 
-      console.log("[v0] Response status:", response.status)
-      const responseData = await response.json()
-      console.log("[v0] Response data:", responseData)
-
       if (response.ok) {
         router.push("/thanks")
       } else {
+        const responseData = await response.json()
         setError(responseData.error || "Failed to submit booking. Please try again.")
       }
     } catch (err) {
-      console.error("[v0] Form submission error:", err)
       setError("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)

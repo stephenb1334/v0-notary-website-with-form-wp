@@ -26,11 +26,6 @@ export function ContactForm() {
 
     formData.set("service", selectedService)
 
-    console.log("[v0] Form data being submitted:")
-    formData.forEach((value, key) => {
-      console.log(`[v0] ${key}: ${value}`)
-    })
-
     try {
       const response = await fetch("https://formspree.io/f/xrbrgjla", {
         method: "POST",
@@ -40,17 +35,13 @@ export function ContactForm() {
         },
       })
 
-      console.log("[v0] Response status:", response.status)
-      const responseData = await response.json()
-      console.log("[v0] Response data:", responseData)
-
       if (response.ok) {
         router.push("/thanks")
       } else {
+        const responseData = await response.json()
         setError(responseData.error || "Failed to send message. Please try again.")
       }
     } catch (err) {
-      console.error("[v0] Form submission error:", err)
       setError("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)
